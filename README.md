@@ -2,7 +2,7 @@
 
 ## Introduction
 
-We attempt to train a unicorn :unicorn: named Bubble to perform food recognition on our Singaporean cuisine !            
+We attempt to train a unicorn :unicorn:  named Bubble to perform food recognition on our Singaporean cuisine !            
 
 Bubble is able to recognise 12 types of food (below) after feeding her. Try it out yourself :yum:               
 
@@ -64,6 +64,7 @@ Some the details regarding the model is shown in the table below:
 ├── model                             
 │   ├── data_gen.py                   # data preparation pipeline (for training)
 │   ├── model.py                      # define model architecture
+│   ├── evaluation.py                 # evaluation script for test set
 │   └── train.py                      # training script (polyaxon or local)
 ├── test
 │   ├── pytest.ini                    # config file for pytest
@@ -141,6 +142,17 @@ export POLYAXON_NO_OP=1
 and then run the command below to train the model in the model directory:         
 ```
 python -m train
+```
+
+5. Model Evaluation
+
+Run the following command in the `model` directory:               
+```
+python evaluation.py
+```
+and you should see the model architecture followed by test metrics:           
+```
+Accuracy Score for test set with 373 samples across 12 classes is 0.8069705367088318.
 ```
 
 ## Bubble in Action ! :stuck_out_tongue:
