@@ -33,7 +33,7 @@ app = Flask(__name__)
 
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(APP_ROOT, '../weights/tensorfood_small.h5')
+MODEL_PATH = os.path.join(APP_ROOT, '../weights/tensorfood.h5')
 
 
 @app.route('/', methods=['GET'])
