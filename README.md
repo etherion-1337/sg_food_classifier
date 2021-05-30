@@ -160,7 +160,9 @@ Dockerize the App and deploy on EC2 (if got time and resource, free tier t2.nano
 ~~3. Dockerize the App~~                
 4. Deploy on AWS EC2            
 
+## Author
 
+Zk Xav
 
 [1]: https://scikit-learn.org/stable/install.html
 [2]: https://www.tensorflow.org/install
