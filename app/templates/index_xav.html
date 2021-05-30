@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bubble's Food Heaven</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+</head>
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    .mauve {
+        background-color: #C9B1FF;
+        color: black;
+        padding: 10px;
+    }
+
+    .shampoo {
+    background-color: #FFCAF2;
+    color: black;
+    padding: 10px;
+    }
+
+    .melon {
+    background-color: #FFB2B1;
+    color: black;
+    padding: 10px;
+    }
+
+    .banana {
+    background-color: #FFF3AD;
+    color: black;
+    padding: 10px;
+    }
+
+    .teagreen {
+    background-color: #BCFFBC;
+    color: black;
+    padding: 10px;
+    }
+
+    .air {
+    background-color: #A2EDFF;
+    color: black;
+    padding: 10px;
+    }
+
+
+</style>
+
+<body>
+    <div id="app" class="mauve">
+        <h1>Bubble's Food Heaven</h1>
+        <img src= "/static/unicorn_run.gif" style="width:150px;height:150px;">
+        <h4>About Bubble</h4>
+        <div class="shampoo">
+            <p> This is Bubble, a unicorn that recognises food.
+                Bubble is trained using a VGG-16 architecture with params pretrained on the ImageNet dataset. She is then fed (without top layer) 
+                with 1224 dishes from 12 classes of Singapore local delights and has since gained significant weight (about 3GB).</p>
+            <div class="melon">
+                     <p>During training all layers of the original VGG-16 are frozen and an additional 3 FC layers are added. 
+                    We used the Adam optimiser with a learning rate of 0.001 and trained for 100 epochs (early_stop = 3, final epoch trained = 28) with a batch size of 32. 
+                    The test set accuracy Bubble achieved at the end of the training was 80%  </p>
+                <div class="banana">
+                        <p>Bubble expects food to be served in a tray with dimension of (200,200,3), with spice level between [0,255]. 
+                            Tray with different sizes will be resized to (200, 200) before serving.
+                    <div class="teagreen">
+                        </p>Feed Bubble with any of the following food: <br>
+                        <div class="air">
+                            <table style="width:45%"> 
+                                <tr><td width="15%"> chilli crab </td><td width="15%"> curry puff </td> <td width="15%"> dim sum </td></tr>
+                                <tr><td width="15%"> ice kacang </td><td width="15%"> kaya toast </td><td width="15%"> nasi ayam </td></tr>
+                                <tr><td width="15%"> popiah </td><td width="15%"> roti prata </td><td width="15%"> sambal stingray </td></tr>
+                                <tr><td width="15%"> satay </td><td width="15%"> tau huay </td><td width="15%"> wanton noodle </td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <h4>Try it out ! She won't bite :D</h4>
+        <div class="row">
+            <div class="col-6">
+                <h6>Upload image</h6>
+                <img v-if="imageURL" :src="imageURL" class="img-fluid">
+                <input type="file" @change="onFileChanged"><br>
+                <button @click="onUpload" v-if="imageURL && !results">Classify</button>
+                <p v-if="imageURL && !results">Note: Prediction will take some time if model is loaded
+                    for the first time.
+                </p>
+            </div>
+            <div v-if="results" class="col-6">
+                <h6>Prediction</h6>
+                <p>YUMMY ! It's <span v-html="results.food.replace(/_/g,' ')"></span>!</p>
+                <p>Probability: <span v-html="results.probability"></span></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                selectedFile: null,
+                imageURL: null,
+                results: "",
+                errorMessage: ""
+            }
+        },
+        methods: {
+            onFileChanged(event) {
+                this.selectedFile = event.target.files[0];
+                this.imageURL = URL.createObjectURL(this.selectedFile);
+                this.results = "";
+            },
+            onUpload() {
+                let vm = this;
+                const formData = new FormData()
+                formData.append('file', this.selectedFile, this.selectedFile.name)
+                axios.post('predict', formData)
+                    .then(function (response) {
+                        vm.results = response.data;
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        vm.errorMessage = error.response.data.error_message;
+                        console.log(error.response.data);
+                    });
+            }
+        }
+    })
+</script>
+
+
+</html>
