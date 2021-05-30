@@ -71,6 +71,9 @@ pytest test_inference.py
 The model is deployed in a Docker container is hosted on AI Singapore's cluster. 
 
 
+https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-978a-fc73291e733e.mov
+
+
 
 [1]: https://scikit-learn.org/stable/install.html
 [2]: https://www.tensorflow.org/install
