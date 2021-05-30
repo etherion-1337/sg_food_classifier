@@ -42,7 +42,7 @@ def model_predict(model_path, img_path):
     predict_prob = predict_probability(preprocess_image, model)
     confidence = str(round(predict_prob.max()*100,2)) + "%"
     pred_label = predict_label(predict_prob)
-    # print("The food is: {}, with confidence of {}".format(pred_label, confidence))
+    print("The food is: {}, with confidence of {}".format(pred_label, confidence))
 
     return pred_label, confidence
 
@@ -143,10 +143,8 @@ def predict_label(pred_proba):
 
 if __name__ == '__main__':
     ap=argparse.ArgumentParser()
-    ap.add_argument('--image_path', default='../data/train_test_split/val/chilli_crab/2-jumbo.jpg')
-    ap.add_argument('--model_path', default='../weights/tensorfood_small.h5')
+    ap.add_argument('--image_path', default='../data/train_test_split/val/chilli_crab/9-chillicrab7.jpg')
+    ap.add_argument('--model_path', default='../weights/tensorfood.h5')
     args=vars(ap.parse_args())
 
-    pred_label, confidence = model_predict(args["model_path"], args["image_path"])
-    print(pred_label)
-    print(confidence)
+    model_predict(args["model_path"], args["image_path"])

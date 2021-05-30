@@ -4,7 +4,7 @@
 
 We attempt to train a unicorn :unicorn: named Bubble to perform food recognition on our Singaporean cuisine !            
 
-Bubble is able to recognise 12 types of food (below) after feeding her. Try it out yourself :)               
+Bubble is able to recognise 12 types of food (below) after feeding her. Try it out yourself :yum:               
 
 | <!-- -->    | <!-- -->    |<!-- -->     | <!-- -->    |
 |-------------|-------------|-------------|-------------|
@@ -46,19 +46,19 @@ Some the details regarding the model is shown in the table below:
 ├── data
 │   ├── train_set                     # pic grouped in respective folder downstream
 │   │   ├── chilli_crab               # folder name = label
-│   │   │   ├── image_1.png
+│   │   │   ├── image_1.jpg
 │   │   │   └── ...
 │   │   ├── curry_puff
-│   │   │   ├── image_101.png
+│   │   │   ├── image_101.jpg
 │   │   │   └── ...
 │   │   └── ...
 │   │   
 │   └── val_set   
 │       ├── chilli_crab
-│       │   ├── image_810.png
+│       │   ├── image_810.jpg
 │       │   └── ...
 │       ├── curry_puff
-│       │   ├── image_835.png
+│       │   ├── image_835.jpg
 │       │   └── ...
 │       └── ...
 ├── model                             
@@ -96,37 +96,61 @@ To run the app and its associated functions, the following packages are required
 | waitress |  WSGI server | [waitress][6] |
 | pytest | unit testing | [pytest][7] |                
 
-**Due to the upload size GitHub**
+Two files (`environment.yml` and `requirements.txt`) are provided to if you want to restore the environment.
 
+### Usage (After acquiring `weights` and `data`)               
 
-### Usage
+1. Quick Start             
 
-For a quick start, run the following in the Terminal to see how the model perform (need to include model.h5 in production):
-
-```
-git clone
-python -m src.inference --image_path your_test_image.png --model_path model.h5
-```
-
-To run the ``app.py`` locally, run the following in the Terminal and paste the local host to your browser:
+Navigate to the `app` folder and run the following in the Terminal to see how the model performs:
 
 ```
-python -m src.app
+python -m inference --image_path your_test_image.jpg
+```
+You should be able to obtain the name of the food and the predicated probability:             
+```
+The food is: ice_kacang, with confidence of 99.92%
 ```
 
+2. Start the App         
 
-## Running the tests
-
-Run the following in the Terminal at ``tests`` directory:
+To run the ``app.py`` locally, run the following (while in `app` folder) in the Terminal and paste the local host/port to your browser:
 
 ```
-pytest test_inference.py
+python -m app
 ```
 
+3. Unit Test            
+
+To run the unit test, run the following in the root directory:           
+```
+pytest test/test_inference.py 
+```
+
+4. Training                
+
+The training of the model is performed on the [Polyaxon][7] platform. Therefore the training script `train.py` is written in mind of this concept. To train the model locally on the machine you can first deactivate Polyaxon setting by:             
+
+```
+POLYAXON_NO_OP=1
+```
+or if you are using Mac:             
+```
+export POLYAXON_NO_OP=1
+```
+and then run the command below to train the model in the model directory:         
+```
+python -m train
+```
+
+## Bubble in Action ! :stuck_out_tongue:
+
+https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-978a-fc73291e733e.mov                      
 
 
+## Deployment (WIP)        
 
-https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-978a-fc73291e733e.mov
+Dockerize the App and deploy on EC2 (if got time and resource, free tier t2.nano probably wont make it :money_mouth_face:).
 
 
 
@@ -145,3 +169,4 @@ https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-
 [5]: https://pypi.org/project/Flask/
 [6]: https://pypi.org/project/waitress/
 [7]: https://pypi.org/project/pytest/
+[8]: https://polyaxon.com/
