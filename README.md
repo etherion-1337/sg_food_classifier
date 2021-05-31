@@ -155,7 +155,9 @@ and you should see the model architecture followed by test metrics:
 Accuracy Score for test set with 373 samples across 12 classes is 0.8069705367088318.
 ```
 
-## Bubble in Action ! :stuck_out_tongue:
+## Bubble in Action ! :stuck_out_tongue:              
+
+(Long inference time :sleeping:  because I am running on my MacBook so no GPU)
 
 https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-978a-fc73291e733e.mov                      
 
