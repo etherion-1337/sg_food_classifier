@@ -159,7 +159,9 @@ Accuracy Score for test set with 373 samples across 12 classes is 0.806970536708
 
 (Long inference time :sleeping:  because I am running on my MacBook so no GPU)
 
-https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-978a-fc73291e733e.mov                      
+https://user-images.githubusercontent.com/46531622/120099779-f58b2680-c16f-11eb-978a-fc73291e733e.mov           
+
+(The unicorn theme is a tribute to the hilarious resume of Joseph Redmon, creator of the YOLO (You Only Look Once). You can find his resume [here][9])
 
 
 ## Deployment (WIP)        
@@ -186,3 +188,4 @@ Zk Xav
 [6]: https://pypi.org/project/waitress/
 [7]: https://pypi.org/project/pytest/
 [8]: https://polyaxon.com/
+[9]: https://pjreddie.com/static/Redmon%20Resume.pdf
