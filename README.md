@@ -123,9 +123,9 @@ python -m app
 
 3. Unit Test            
 
-To run the unit test, run the following in the root directory:           
+To run the unit test, run the following in the `test` directory:           
 ```
-pytest test/test_inference.py 
+pytest test_inference.py 
 ```
 
 4. Training                
@@ -174,7 +174,7 @@ Dockerize the App and deploy on EC2 (if got time and resource, free tier t2.nano
 ~~1. Re-organise folders~~                  
 ~~2. Redesign Front end~~                 
 ~~3. Dockerize the App~~                
-4. Deploy on AWS EC2            
+~~4. Deploy on AWS EC2~~            
 
 ## Author
 
